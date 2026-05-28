@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 using AntdUI;
 using Rox.Runtimes;
@@ -23,22 +22,6 @@ namespace SteamUserData
             InitializeComponent();
             foreach (var item in alerts())
                 item.Hide();
-
-            Thread_I.NewThread(() => p(this));
-        }
-
-        private static void p(Form parent)
-        {
-            Thread.Sleep(1000);
-            new Modal.Config(parent, "温馨提示", "如果遇到请求失败 TaskCanceled 取消了一个任务, 请等待1分钟后再次尝试, 已知问题已经在修复中...",
-                TType.Info)
-            {
-                Font = CustomFont(),
-                OkFont = CustomFont(),
-                OkText = "我知道了",
-                MaskClosable = false,
-                Draggable = false,
-            }.open();
         }
 
         private void Input_Leave(object sender, EventArgs e)
